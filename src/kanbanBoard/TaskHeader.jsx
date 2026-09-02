@@ -1,4 +1,4 @@
-export default function HeaderColumn({columnName}) {
+export default function TaskHeader({columnName}) {
   return (
     <>
       <div className="flex items-center gap-3 mb-6">

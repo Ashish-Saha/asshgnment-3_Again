@@ -1,17 +1,28 @@
-export default function TaskModal() {
+export default function TaskModal({ onCloseShowModal }) {
   return (
     <>
-      <div className="max-w-4xl mx-auto px-4 py-10 sm:py-12">
-        <div className="mb-8 flex items-center justify-between">
-          <div>
+      <div className=" fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/30 backdrop-blur-sm p-4">
+        {/* <div className="mb-8 flex items-center justify-between">
+          <div >
             <h1 className="text-3xl font-bold text-gray-900 mt-8">Add Task</h1>
             <p className="text-sm text-gray-500">
               Create a card for your board.
             </p>
           </div>
-        </div>
+        </div> */}
 
-        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 sm:p-8">
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 sm:p-8 flex flex-col items-center">
+          <div className="mb-8 flex items-center justify-between text-center">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 mt-8">
+                Add Task
+              </h1>
+              <p className="text-sm text-gray-500">
+                Create a card for your board.
+              </p>
+            </div>
+          </div>
+
           <form className="space-y-8">
             <div className="grid grid-cols-1 gap-6">
               <div>
@@ -110,6 +121,10 @@ export default function TaskModal() {
               <a
                 href="./index.html"
                 className="inline-flex items-center justify-center rounded-xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onCloseShowModal();
+                }}
               >
                 Cancel
               </a>

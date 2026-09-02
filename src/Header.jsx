@@ -1,9 +1,16 @@
+import { useState } from "react";
 import TaskModal from "./kanbanBoard/TaskModal";
 
 export default function Header() {
+  const [showAddModal, setShowAddModal] = useState(false);
+
+  const handleAddShowModal = () => {
+    setShowAddModal((prev) => !prev);
+  };
+
   return (
     <>
-      <TaskModal />
+      {showAddModal && <TaskModal onCloseShowModal={handleAddShowModal}/>}
 
       <div className="bg-white border-b border-gray-200 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -35,7 +42,10 @@ export default function Header() {
                 className="w-full rounded-xl border border-gray-200 bg-white pl-11 pr-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-900 focus:outline-none"
               />
             </div>
-            <button className="px-4 py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+            <button
+              className="px-4 py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+              onClick={handleAddShowModal}
+            >
               + Add Task
             </button>
           </div>
