@@ -1,11 +1,11 @@
 import TaskHeader from "./TaskHeader";
 
-export default function TodoColumn({ todoTaskData, onhandleItemsShow , showItems }) {
+export default function TodoColumn({ todoTaskData, onhandleOpenManu , openManu }) {
   const todoData = [...todoTaskData];
   return (
     <>
       <div className="flex-1 flex flex-col min-w-0 w-full">
-        <TaskHeader columnName="To-do" onhandleItemsShow={onhandleItemsShow} showItems={showItems}/>
+        <TaskHeader columnName="To-do" onhandleOpenManu={onhandleOpenManu} openManu={openManu}/>
 
         <div className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto">
           {/* <!-- Card 1 --> */}

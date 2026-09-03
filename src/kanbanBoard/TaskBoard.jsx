@@ -5,27 +5,18 @@ import ProgressColumn from "./ProgressColumn";
 import TodoColumn from "./TodoColumn";
 
 export default function TaskBoard() {
-  // const [showItems, setShowItems] = useState({
-  //   "To-do": false,
-  //   "In Progress": false,
-  //   Done: false,
-  // });
+  const [openManu, setOpenManu] = useState({
+    column: null,
+    type: null,
+  });
+  console.log(openManu);
 
-  const [showItems, setShowItems] = useState(null);
-  console.log(showItems);
-
-  // const handleShowItems = (column) => {
-  //   setShowItems((prev) => ({
-  //     "To-do": false,
-  //     "In Progress": false,
-  //     Done: false,
-
-  //     [column]: !prev[column],
-  //   }));
-  // };
-
-  const handleShowItems = (column) => {
-    setShowItems((prev) => (prev === column ? null : column));
+  const handleOpenManu = (column, type) => {
+    setOpenManu((prev) =>
+      prev.column === column && prev.type === type
+        ? { column: null, type: null }
+        : { column, type },
+    );
   };
 
   return (
@@ -34,20 +25,20 @@ export default function TaskBoard() {
         <div className="flex flex-col gap-6 xl:flex-row h-full">
           <TodoColumn
             todoTaskData={taskData.todo}
-            onhandleItemsShow={handleShowItems}
-            showItems={showItems === "To-do"}
+            onhandleOpenManu={handleOpenManu}
+            openManu={openManu}
           />
 
           <ProgressColumn
             progressTaskData={taskData.progress}
-            onhandleItemsShow={handleShowItems}
-            showItems={showItems === "In Progress"}
+            onhandleOpenManu={handleOpenManu}
+            openManu={openManu}
           />
 
           <DoneColumn
             doneTaskData={taskData.done}
-            onhandleItemsShow={handleShowItems}
-            showItems={showItems === "Done"}
+            onhandleOpenManu={handleOpenManu}
+            openManu={openManu}
           />
         </div>
       </div>

@@ -1,8 +1,10 @@
-export default function TaskHeader({
-  columnName,
-  onhandleItemsShow,
-  showItems,
-}) {
+export default function TaskHeader({ columnName, onhandleOpenManu, openManu }) {
+  //While click any filter item ites truns true meaning manu show & others manu is set by null,
+  // Here isFilterOpen is become true after click & all others become false
+  const isFilterOpen =
+    openManu.column === columnName && openManu.type === "filter";
+  const isSortOpen = openManu.column === columnName && openManu.type === "sort";
+
   return (
     <>
       <div className="flex items-center gap-3 mb-6">
@@ -18,7 +20,8 @@ export default function TaskHeader({
             <button
               type="button"
               className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none"
-              onClick={(e) => {onhandleItemsShow(columnName); console.log(e.target.textContent)
+              onClick={() => {
+                onhandleOpenManu(columnName, "filter");
               }}
             >
               <svg
@@ -37,7 +40,7 @@ export default function TaskHeader({
               Filter
             </button>
 
-            {showItems && (
+            {isFilterOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg text-sm text-gray-700 py-2 z-50">
                 <p className="px-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Filter by tag
@@ -68,7 +71,7 @@ export default function TaskHeader({
             <button
               type="button"
               className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none"
-              onClick={() => onhandleItemsShow(columnName)}
+              onClick={() => onhandleOpenManu(columnName, "sort")}
             >
               <svg
                 className="w-4 h-4"
@@ -86,7 +89,7 @@ export default function TaskHeader({
               Sort
             </button>
 
-            {showItems && (
+            {isSortOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg text-sm text-gray-700 py-2 z-40">
                 <p className="px-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Sort by date

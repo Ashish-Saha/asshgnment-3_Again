@@ -2,8 +2,8 @@ import TaskHeader from "./TaskHeader";
 
 export default function DoneColumn({
   doneTaskData,
-  onhandleItemsShow,
-  showItems,
+  onhandleOpenManu,
+  openManu,
 }) {
   const data = [...doneTaskData];
 
@@ -12,8 +12,8 @@ export default function DoneColumn({
       <div className="flex-1 flex flex-col min-w-0 w-full">
         <TaskHeader
           columnName="Done"
-          onhandleItemsShow={onhandleItemsShow}
-          showItems={showItems}
+          onhandleOpenManu={onhandleOpenManu}
+          openManu={openManu}
         />
 
         <div className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto">
