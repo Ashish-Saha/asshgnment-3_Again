@@ -18,7 +18,8 @@ export default function TaskHeader({
             <button
               type="button"
               className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none"
-              onClick={() => onhandleItemsShow(columnName)}
+              onClick={(e) => {onhandleItemsShow(columnName); console.log(e.target.textContent)
+              }}
             >
               <svg
                 className="w-4 h-4"

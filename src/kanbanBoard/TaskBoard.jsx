@@ -12,7 +12,7 @@ export default function TaskBoard() {
   // });
 
   const [showItems, setShowItems] = useState(null);
-console.log(showItems);
+  console.log(showItems);
 
   // const handleShowItems = (column) => {
   //   setShowItems((prev) => ({
@@ -25,7 +25,6 @@ console.log(showItems);
   // };
 
   const handleShowItems = (column) => {
-
     setShowItems((prev) => (prev === column ? null : column));
   };
 
@@ -42,13 +41,13 @@ console.log(showItems);
           <ProgressColumn
             progressTaskData={taskData.progress}
             onhandleItemsShow={handleShowItems}
-            showItems={showItems === 'In Progress'}
+            showItems={showItems === "In Progress"}
           />
 
           <DoneColumn
             doneTaskData={taskData.done}
             onhandleItemsShow={handleShowItems}
-            showItems={showItems === 'Done'}
+            showItems={showItems === "Done"}
           />
         </div>
       </div>

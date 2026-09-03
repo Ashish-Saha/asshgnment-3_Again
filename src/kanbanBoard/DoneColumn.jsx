@@ -1,31 +1,32 @@
 import TaskHeader from "./TaskHeader";
 
-export default function DoneColumn({ doneTaskData, onhandleItemsShow, showItems }) {
+export default function DoneColumn({
+  doneTaskData,
+  onhandleItemsShow,
+  showItems,
+}) {
   const data = [...doneTaskData];
 
   return (
     <>
       <div className="flex-1 flex flex-col min-w-0 w-full">
-        <TaskHeader columnName="Done"  onhandleItemsShow={onhandleItemsShow} showItems={showItems} />
+        <TaskHeader
+          columnName="Done"
+          onhandleItemsShow={onhandleItemsShow}
+          showItems={showItems}
+        />
 
         <div className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto">
           {/* <!-- Card 1 --> */}
           {data.map((item) => (
             <div
               className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow opacity-75 relative z-40"
-              data-card="software-installation"
-              data-column="done"
               key={item.id}
             >
-              <div
-                className="absolute top-4 right-4 text-gray-500"
-                data-card-menu-container
-              >
+              <div className="absolute top-4 right-4 text-gray-500">
                 <button
                   type="button"
                   className="p-1 rounded-full hover:bg-gray-100 hover:text-gray-700 focus:outline-none"
-                  data-card-menu-toggle="software-installation-menu"
-                  aria-label="Open card menu"
                 >
                   <svg
                     className="w-5 h-5"
