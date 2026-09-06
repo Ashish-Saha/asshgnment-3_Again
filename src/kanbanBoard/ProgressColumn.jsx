@@ -5,7 +5,7 @@ export default function ProgressColumn({ progressTaskData, onhandleOpenManu , op
   return (
     <>
       <div className="flex-1 flex flex-col min-w-0 w-full">
-        <TaskHeader columnName="In Progress"  onhandleOpenManu={onhandleOpenManu} openManu={openManu}/>
+        <TaskHeader columnName="In Progress"  onhandleOpenManu={onhandleOpenManu} openManu={openManu} taskCount={progressTaskData.length}/>
 
         <div className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto">
           {/* <!-- Card 1 --> */}

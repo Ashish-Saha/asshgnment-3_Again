@@ -5,7 +5,7 @@ export default function TodoColumn({ todoTaskData, onhandleOpenManu , openManu }
   return (
     <>
       <div className="flex-1 flex flex-col min-w-0 w-full">
-        <TaskHeader columnName="To-do" onhandleOpenManu={onhandleOpenManu} openManu={openManu}/>
+        <TaskHeader columnName="To-do" onhandleOpenManu={onhandleOpenManu} openManu={openManu} taskCount={todoTaskData.length}/>
 
         <div className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto">
           {/* <!-- Card 1 --> */}

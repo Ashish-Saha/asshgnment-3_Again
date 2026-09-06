@@ -1,4 +1,4 @@
-export default function TaskHeader({ columnName, onhandleOpenManu, openManu }) {
+export default function TaskHeader({ columnName, onhandleOpenManu, openManu, taskCount }) {
   //While click any filter item ites truns true meaning manu show & others manu is set by null,
   // Here isFilterOpen is become true after click & all others become false
   const isFilterOpen =
@@ -11,7 +11,7 @@ export default function TaskHeader({ columnName, onhandleOpenManu, openManu }) {
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-semibold text-gray-900">{columnName}</h2>
           <span className="text-sm font-medium text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
-            3
+            {taskCount}
           </span>
         </div>
 
@@ -62,6 +62,42 @@ export default function TaskHeader({ columnName, onhandleOpenManu, openManu }) {
                   className="w-full text-left px-4 py-2 hover:bg-gray-50"
                 >
                   Marketing
+                </button>
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                >
+                  Creative
+                </button>
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                >
+                  Development
+                </button>
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                >
+                  Backend
+                </button>
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                >
+                  Setup
+                </button>
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                >
+                  Infrastructure
+                </button>
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                >
+                  Documentation
                 </button>
               </div>
             )}

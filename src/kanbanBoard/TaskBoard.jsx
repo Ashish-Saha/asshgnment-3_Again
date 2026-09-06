@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { taskData } from "../data/data";
+import { useContext, useState } from "react";
+
+import { DataContext } from "../context/indexContext";
 import DoneColumn from "./DoneColumn";
 import ProgressColumn from "./ProgressColumn";
 import TodoColumn from "./TodoColumn";
@@ -9,7 +10,8 @@ export default function TaskBoard() {
     column: null,
     type: null,
   });
-  console.log(openManu);
+
+  const { dataArr, setDataArr } = useContext(DataContext);
 
   const handleOpenManu = (column, type) => {
     setOpenManu((prev) =>
@@ -24,19 +26,19 @@ export default function TaskBoard() {
       <div className="flex-1 p-4 sm:p-6 lg:p-8 min-h-0">
         <div className="flex flex-col gap-6 xl:flex-row h-full">
           <TodoColumn
-            todoTaskData={taskData.todo}
+            todoTaskData={dataArr.todo}
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
           />
 
           <ProgressColumn
-            progressTaskData={taskData.progress}
+            progressTaskData={dataArr.progress}
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
           />
 
           <DoneColumn
-            doneTaskData={taskData.done}
+            doneTaskData={dataArr.done}
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
           />

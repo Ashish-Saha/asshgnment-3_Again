@@ -14,6 +14,7 @@ export default function DoneColumn({
           columnName="Done"
           onhandleOpenManu={onhandleOpenManu}
           openManu={openManu}
+          taskCount={doneTaskData.length}
         />
 
         <div className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto">

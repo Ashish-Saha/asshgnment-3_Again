@@ -20,15 +20,15 @@ export const taskData = {
       status: "todo",
     },
 
-    {
-      id: crypto.randomUUID(),
-      title: "Social Media",
-      description: "Social Media Scheduling and posting",
-      tag: "Marketing",
-      tagColor: "#15803D",
-      date: "Aug 28",
-      status: "todo",
-    },
+    // {
+    //   id: crypto.randomUUID(),
+    //   title: "Social Media",
+    //   description: "Social Media Scheduling and posting",
+    //   tag: "Marketing",
+    //   tagColor: "#15803D",
+    //   date: "Aug 28",
+    //   status: "todo",
+    // },
   ],
 
   progress: [
@@ -52,15 +52,15 @@ export const taskData = {
       status: "progress",
     },
 
-    {
-      id: crypto.randomUUID(),
-      title: "API Integration",
-      description: "Integrate payment gateway APIs",
-      tag: "Backend",
-      tagColor: "#B91C1C",
-      date: "Aug 30",
-      status: "progress",
-    },
+    // {
+    //   id: crypto.randomUUID(),
+    //   title: "API Integration",
+    //   description: "Integrate payment gateway APIs",
+    //   tag: "Backend",
+    //   tagColor: "#B91C1C",
+    //   date: "Aug 30",
+    //   status: "progress",
+    // },
   ],
 
   done: [
@@ -84,14 +84,14 @@ export const taskData = {
       status: "done",
     },
 
-    {
-      id: crypto.randomUUID(),
-      title: "Documentation",
-      description: "Complete API documentation",
-      tag: "Documentation",
-      tagColor: "#18aaa7",
-      date: "Aug 30",
-      status: "done",
-    },
+    // {
+    //   id: crypto.randomUUID(),
+    //   title: "Documentation",
+    //   description: "Complete API documentation",
+    //   tag: "Documentation",
+    //   tagColor: "#18aaa7",
+    //   date: "Aug 30",
+    //   status: "done",
+    // },
   ],
 };

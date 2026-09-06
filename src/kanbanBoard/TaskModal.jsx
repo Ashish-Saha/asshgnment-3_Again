@@ -1,16 +1,40 @@
+import { useContext, useState } from "react";
+import { DataContext } from "../context/indexContext";
+import { getTagColor } from "../tools/tagColor";
+
 export default function TaskModal({ onCloseShowModal }) {
+  const { dataArr, setDataArr } = useContext(DataContext);
+
+  const [formData, setFormData] = useState({
+    id: crypto.randomUUID(),
+    title: "",
+    description: "",
+    tag: "",
+    tagColor: "",
+    date: "",
+    status: "todo",
+  });
+
+  const handleFormData = (item, event) => {
+    const value = event.target.value;
+    setFormData((prev) => ({
+      ...prev,
+      [item]: value,
+      ...(item === "tag" && { tagColor: getTagColor(value) }),
+    }));
+  };
+
+  const handleAddTask = (task) => {
+    const status = task.status;
+    setDataArr({
+      ...dataArr,
+      [status]: [...dataArr[status], task],
+    });
+  };
+
   return (
     <>
       <div className=" fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/30 backdrop-blur-sm p-4">
-        {/* <div className="mb-8 flex items-center justify-between">
-          <div >
-            <h1 className="text-3xl font-bold text-gray-900 mt-8">Add Task</h1>
-            <p className="text-sm text-gray-500">
-              Create a card for your board.
-            </p>
-          </div>
-        </div> */}
-
         <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 sm:p-8 flex flex-col items-center">
           <div className="mb-8 flex items-center justify-between text-center">
             <div>
@@ -23,7 +47,14 @@ export default function TaskModal({ onCloseShowModal }) {
             </div>
           </div>
 
-          <form className="space-y-8">
+          <form
+            onSubmit={(e) => {
+              handleAddTask(formData);
+              e.preventDefault();
+              onCloseShowModal();
+            }}
+            className="space-y-8"
+          >
             <div className="grid grid-cols-1 gap-6">
               <div>
                 <label
@@ -39,6 +70,8 @@ export default function TaskModal({ onCloseShowModal }) {
                   placeholder="e.g. Wireframes"
                   className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-900 focus:outline-none"
                   required
+                  value={formData.title}
+                  onChange={(e) => handleFormData("title", e)}
                 />
               </div>
 
@@ -54,6 +87,8 @@ export default function TaskModal({ onCloseShowModal }) {
                   name="description"
                   placeholder="Add context or acceptance criteria"
                   className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-900 focus:outline-none"
+                  value={formData.description}
+                  onChange={(e) => handleFormData("description", e)}
                 />
               </div>
             </div>
@@ -70,6 +105,8 @@ export default function TaskModal({ onCloseShowModal }) {
                   id="tag"
                   name="tag"
                   className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none"
+                  value={formData.tag}
+                  onChange={(e) => handleFormData("tag", e)}
                 >
                   <option value="design">Design</option>
                   <option value="operations">Operations</option>
@@ -95,6 +132,8 @@ export default function TaskModal({ onCloseShowModal }) {
                   id="date"
                   name="date"
                   className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none"
+                  value={formData.date}
+                  onChange={(e) => handleFormData("date", e)}
                 />
               </div>
 
@@ -109,9 +148,11 @@ export default function TaskModal({ onCloseShowModal }) {
                   id="status"
                   name="status"
                   className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none"
+                  value={formData.status}
+                  onChange={(e) => handleFormData("status", e)}
                 >
                   <option value="todo">To-do</option>
-                  <option value="in-progress">In Progress</option>
+                  <option value="progress">In Progress</option>
                   <option value="done">Done</option>
                 </select>
               </div>
