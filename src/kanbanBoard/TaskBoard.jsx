@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 
-import { DataContext } from "../context/indexContext";
+import { DataContext, SearchContext } from "../context/indexContext";
 import DoneColumn from "./DoneColumn";
 import ProgressColumn from "./ProgressColumn";
 import TodoColumn from "./TodoColumn";
@@ -12,6 +12,7 @@ export default function TaskBoard() {
   });
 
   const { dataArr, setDataArr } = useContext(DataContext);
+  const {SearchTerm} = useContext(SearchContext)
 
   const handleOpenManu = (column, type) => {
     setOpenManu((prev) =>
