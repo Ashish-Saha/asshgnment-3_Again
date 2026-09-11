@@ -50,4 +50,11 @@ function getTagColor(name) {
   return tagColors[name] || "#000";
 }
 
-export { getTagColor };
+
+function getFormatDate(date){
+  return new Date(date).toLocaleDateString('en-US', {day: 'numeric', month: 'short'})
+}
+
+
+
+export { getTagColor, getFormatDate };

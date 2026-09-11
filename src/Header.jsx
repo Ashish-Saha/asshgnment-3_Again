@@ -13,7 +13,6 @@ export default function Header() {
   };
 
   const handleSearch = (e) => {
-    console.log(e);
     setSearchTerm(e);
   };
 

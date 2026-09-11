@@ -12,7 +12,7 @@ export default function TaskBoard() {
   });
 
   const { dataArr, setDataArr } = useContext(DataContext);
-  const {SearchTerm} = useContext(SearchContext)
+  const { searchTerm } = useContext(SearchContext);
 
   const handleOpenManu = (column, type) => {
     setOpenManu((prev) =>
@@ -22,24 +22,35 @@ export default function TaskBoard() {
     );
   };
 
+  const searchDataArr = (task) => {
+    const searchText = searchTerm.toLowerCase();
+    return task.filter((item) => {
+      return (
+        item.title.toLowerCase().includes(searchText) ||
+        item.description.toLowerCase().includes(searchText) ||
+        item.tag.toLowerCase().includes(searchText)
+      );
+    });
+  };
+
   return (
     <>
       <div className="flex-1 p-4 sm:p-6 lg:p-8 min-h-0">
         <div className="flex flex-col gap-6 xl:flex-row h-full">
           <TodoColumn
-            todoTaskData={dataArr.todo}
+            todoTaskData={searchDataArr(dataArr.todo)}
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
           />
 
           <ProgressColumn
-            progressTaskData={dataArr.progress}
+            progressTaskData={searchDataArr(dataArr.progress)}
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
           />
 
           <DoneColumn
-            doneTaskData={dataArr.done}
+            doneTaskData={searchDataArr(dataArr.done)}
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
           />
