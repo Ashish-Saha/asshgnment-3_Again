@@ -3,9 +3,8 @@ export default function TaskHeader({
   onhandleOpenManu,
   openManu,
   taskCount,
-  onFilterSort,
-  filterItem,
   setFilterItem,
+  setSortItem,
 }) {
   //While click any filter item ites truns true meaning manu show & others manu is set by null,
   // Here isFilterOpen is become true after click & all others become false
@@ -146,18 +145,26 @@ export default function TaskHeader({
             </button>
 
             {isSortOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg text-sm text-gray-700 py-2 z-40">
+              <div
+                className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg text-sm text-gray-700 py-2 z-40"
+                onClick={(e) => {
+                  onhandleOpenManu(null, null);
+                  setSortItem(e.target.value);
+                }}
+              >
                 <p className="px-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Sort by date
                 </p>
                 <button
                   type="button"
+                  value={"newest"}
                   className="w-full text-left px-4 py-2 hover:bg-gray-50"
                 >
                   Newest first
                 </button>
                 <button
                   type="button"
+                  value={"oldest"}
                   className="w-full text-left px-4 py-2 hover:bg-gray-50"
                 >
                   Oldest first
