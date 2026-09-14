@@ -1,7 +1,14 @@
 import { getFormatDate } from "../tools/tagColor";
 
 export default function Task({ item, onhandleOpenManu, openManu, columnName }) {
-  const isTaskOpen = openManu.column === columnName && openManu.type === item.id;
+  const isTaskOpen =
+    openManu.column === columnName && openManu.type === item.id;
+
+  const moveToOptions = {
+    "To-do": ["In Progress", "Done"],
+    "In Progress": ["To-do", "Done"],
+    Done: ["To-do", "In Progress"],
+  };
 
   return (
     <>
@@ -25,18 +32,17 @@ export default function Task({ item, onhandleOpenManu, openManu, columnName }) {
               <p className="px-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
                 Move to
               </p>
-              <button
-                type="button"
-                className="w-full text-left px-4 py-2 hover:bg-gray-50"
-              >
-                In Progress
-              </button>
-              <button
-                type="button"
-                className="w-full text-left px-4 py-2 hover:bg-gray-50"
-              >
-                Done
-              </button>
+
+              {moveToOptions[columnName].map((option, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                >
+                  {option}
+                </button>
+              ))}
+
               <div className="border-t border-gray-100 mt-2 pt-2 space-y-1">
                 <button
                   type="button"

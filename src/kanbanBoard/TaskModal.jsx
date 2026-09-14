@@ -108,15 +108,15 @@ export default function TaskModal({ onCloseShowModal }) {
                   value={formData.tag}
                   onChange={(e) => handleFormData("tag", e)}
                 >
-                  <option value="design">Design</option>
-                  <option value="operations">Operations</option>
-                  <option value="marketing">Marketing</option>
-                  <option value="creative">Creative</option>
-                  <option value="development">Development</option>
-                  <option value="backend">Backend</option>
-                  <option value="setup">Setup</option>
-                  <option value="infrastructure">Infrastructure</option>
-                  <option value="documentation">Documentation</option>
+                  <option value="Design">Design</option>
+                  <option value="Operations">Operations</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Creative">Creative</option>
+                  <option value="Development">Development</option>
+                  <option value="Backend">Backend</option>
+                  <option value="Setup">Setup</option>
+                  <option value="Infrastructure">Infrastructure</option>
+                  <option value="Documentation">Documentation</option>
                 </select>
               </div>
 
