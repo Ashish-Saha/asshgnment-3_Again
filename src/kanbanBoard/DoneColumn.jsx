@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { filterSort } from "../tools/FilterSort";
+import NotFound from "../tools/NotFound";
 import Task from "./Task";
 import TaskHeader from "./TaskHeader";
 
@@ -29,15 +30,19 @@ export default function DoneColumn({
 
         <div className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto">
           {/* <!-- Card  --> */}
-          {filterSortedData.map((item) => (
-            <Task
-              key={item.id}
-              item={item}
-              onhandleOpenManu={onhandleOpenManu}
-              openManu={openManu}
-              columnName="Done"
-            />
-          ))}
+          {filterSortedData.length === 0 ? (
+            <NotFound />
+          ) : (
+            filterSortedData.map((item) => (
+              <Task
+                key={item.id}
+                item={item}
+                onhandleOpenManu={onhandleOpenManu}
+                openManu={openManu}
+                columnName="Done"
+              />
+            ))
+          )}
         </div>
       </div>
     </>

@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { filterSort } from "../tools/FilterSort.js";
+import NotFound from "../tools/NotFound.jsx";
 import Task from "./Task";
 import TaskHeader from "./TaskHeader";
-import {filterSort} from '../tools/FilterSort.js'
 
 export default function TodoColumn({
   todoTaskData,
@@ -13,27 +14,7 @@ export default function TodoColumn({
   const [filterItem, setFilterItem] = useState("All");
   const [sortItem, setSortItem] = useState("");
 
-  // const filterSort = () => {
-  //   let result;
-
-  //   filterItem === "All"
-  //     ? (result = todoData)
-  //     : (result = todoData.filter((item) => item.tag === filterItem));
-
-  //   sortItem === "newest"
-  //     ? (result = [...result].sort(
-  //         (a, b) => new Date(b.date) - new Date(a.date),
-  //       ))
-  //     : (result = [...result].sort(
-  //         (a, b) => new Date(a.date) - new Date(b.date),
-  //       ));
-
-  //   return result;
-  // };
-
-  
-  const filterSortedData = filterSort(filterItem, sortItem, todoData)
-
+  const filterSortedData = filterSort(filterItem, sortItem, todoData);
 
   return (
     <>
@@ -50,15 +31,19 @@ export default function TodoColumn({
         <div className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto">
           {/* <!-- Card 1 --> */}
 
-          {filterSortedData.map((item) => (
-            <Task
-              key={item.id}
-              item={item}
-              onhandleOpenManu={onhandleOpenManu}
-              openManu={openManu}
-              columnName="To-do"
-            />
-          ))}
+          {filterSortedData.length === 0 ? (
+            <NotFound />
+          ) : (
+            filterSortedData.map((item) => (
+              <Task
+                key={item.id}
+                item={item}
+                onhandleOpenManu={onhandleOpenManu}
+                openManu={openManu}
+                columnName="To-do"
+              />
+            ))
+          )}
         </div>
       </div>
     </>

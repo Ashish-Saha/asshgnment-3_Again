@@ -37,7 +37,10 @@ export default function Task({ item, onhandleOpenManu, openManu, columnName }) {
                 <button
                   key={index}
                   type="button"
+                  value={option}
                   className="w-full text-left px-4 py-2 hover:bg-gray-50"
+                  onClick={(e)=>{console.log(e.target.value);
+                  }}
                 >
                   {option}
                 </button>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { filterSort } from "../tools/FilterSort";
+import NotFound from "../tools/NotFound";
 import Task from "./Task";
 import TaskHeader from "./TaskHeader";
 
@@ -28,17 +29,20 @@ export default function ProgressColumn({
         />
 
         <div className="space-y-4 flex-1 overflow-visible lg:overflow-y-auto">
-          {/* <!-- Card 1 --> */}
-          {filterSortedData.map((item) => (
-            <Task
-              key={item.id}
-              item={item}
-              onhandleOpenManu={onhandleOpenManu}
-              openManu={openManu}
-              columnName="In Progress"
-              
-            />
-          ))}
+          {/* <!-- Card --> */}
+          {filterSortedData.length === 0 ? (
+            <NotFound />
+          ) : (
+            filterSortedData.map((item) => (
+              <Task
+                key={item.id}
+                item={item}
+                onhandleOpenManu={onhandleOpenManu}
+                openManu={openManu}
+                columnName="In Progress"
+              />
+            ))
+          )}
         </div>
       </div>
     </>
