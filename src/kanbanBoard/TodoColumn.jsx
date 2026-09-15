@@ -8,6 +8,7 @@ export default function TodoColumn({
   todoTaskData,
   onhandleOpenManu,
   openManu,
+  onTaskMove
 }) {
   const todoData = [...todoTaskData];
 
@@ -41,6 +42,7 @@ export default function TodoColumn({
                 onhandleOpenManu={onhandleOpenManu}
                 openManu={openManu}
                 columnName="To-do"
+                onTaskMove = {onTaskMove}
               />
             ))
           )}

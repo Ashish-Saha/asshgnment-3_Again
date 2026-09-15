@@ -1,6 +1,6 @@
 import { getFormatDate } from "../tools/tagColor";
 
-export default function Task({ item, onhandleOpenManu, openManu, columnName }) {
+export default function Task({ item, onhandleOpenManu, openManu, columnName, onTaskMove }) {
   const isTaskOpen =
     openManu.column === columnName && openManu.type === item.id;
 
@@ -39,7 +39,8 @@ export default function Task({ item, onhandleOpenManu, openManu, columnName }) {
                   type="button"
                   value={option}
                   className="w-full text-left px-4 py-2 hover:bg-gray-50"
-                  onClick={(e)=>{console.log(e.target.value);
+                  onClick={(e) => {
+                    onTaskMove(e.target.value, item)
                   }}
                 >
                   {option}

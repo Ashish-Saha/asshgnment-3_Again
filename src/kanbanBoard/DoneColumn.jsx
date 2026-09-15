@@ -8,6 +8,7 @@ export default function DoneColumn({
   doneTaskData,
   onhandleOpenManu,
   openManu,
+  onTaskMove
 }) {
   const data = [...doneTaskData];
 
@@ -40,6 +41,7 @@ export default function DoneColumn({
                 onhandleOpenManu={onhandleOpenManu}
                 openManu={openManu}
                 columnName="Done"
+                onTaskMove={onTaskMove}
               />
             ))
           )}

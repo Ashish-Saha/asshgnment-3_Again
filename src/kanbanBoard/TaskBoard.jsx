@@ -33,6 +33,23 @@ export default function TaskBoard() {
     });
   };
 
+  console.log(dataArr)
+  
+  const taskMove = (nextColumn, task) => {
+    const newColumnName = {
+      "To-do": "todo",
+      "In Progress": "progress",
+      Done: "done",
+    };
+
+    const next = newColumnName[nextColumn];
+
+    setDataArr({
+      ...dataArr,
+      [next]: [...dataArr[next], task],
+    });
+  };
+
   return (
     <>
       <div className="flex-1 p-4 sm:p-6 lg:p-8 min-h-0">
@@ -41,18 +58,21 @@ export default function TaskBoard() {
             todoTaskData={searchDataArr(dataArr.todo)}
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
+            onTaskMove={taskMove}
           />
 
           <ProgressColumn
             progressTaskData={searchDataArr(dataArr.progress)}
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
+            onTaskMove={taskMove}
           />
 
           <DoneColumn
             doneTaskData={searchDataArr(dataArr.done)}
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
+            onTaskMove={taskMove}
           />
         </div>
       </div>
