@@ -1,6 +1,6 @@
 import { getFormatDate } from "../tools/tagColor";
 
-export default function Task({ item, onhandleOpenManu, openManu, columnName, onTaskMove }) {
+export default function Task({ item, onhandleOpenManu, openManu, columnName, onTaskMove, onDeleteTask }) {
   const isTaskOpen =
     openManu.column === columnName && openManu.type === item.id;
 
@@ -57,6 +57,7 @@ export default function Task({ item, onhandleOpenManu, openManu, columnName, onT
                 <button
                   type="button"
                   className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50"
+                  onClick={()=>onDeleteTask(item)}
                 >
                   Delete Card
                 </button>

@@ -8,7 +8,8 @@ export default function ProgressColumn({
   progressTaskData,
   onhandleOpenManu,
   openManu,
-  onTaskMove
+  onTaskMove,
+  onDeleteTask
 }) {
   const progressData = [...progressTaskData];
 
@@ -42,6 +43,7 @@ export default function ProgressColumn({
                 openManu={openManu}
                 columnName="In Progress"
                 onTaskMove={onTaskMove}
+                onDeleteTask={onDeleteTask}
               />
             ))
           )}

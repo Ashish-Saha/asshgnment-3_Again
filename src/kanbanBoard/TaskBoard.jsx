@@ -33,20 +33,30 @@ export default function TaskBoard() {
     });
   };
 
-  console.log(dataArr)
-  
   const taskMove = (nextColumn, task) => {
+    //As nextColumn gets like To-do but as per dataArr name is 'todo' so newColumnName is
+    // to convert this naming confusion
+
     const newColumnName = {
       "To-do": "todo",
       "In Progress": "progress",
       Done: "done",
     };
 
+    //Here next is in which column task should move
     const next = newColumnName[nextColumn];
 
     setDataArr({
       ...dataArr,
-      [next]: [...dataArr[next], task],
+      [next]: [...dataArr[next], { ...task, status: next }],
+      [task.status]: dataArr[task.status].filter((item) => item.id !== task.id),
+    });
+  };
+
+  const deleteTask = (task) => {
+    setDataArr({
+      ...dataArr,
+      [task.status]: dataArr[task.status].filter((item) => item.id !== task.id),
     });
   };
 
@@ -59,6 +69,7 @@ export default function TaskBoard() {
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
             onTaskMove={taskMove}
+            onDeleteTask={deleteTask}
           />
 
           <ProgressColumn
@@ -66,6 +77,7 @@ export default function TaskBoard() {
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
             onTaskMove={taskMove}
+            onDeleteTask={deleteTask}
           />
 
           <DoneColumn
@@ -73,6 +85,7 @@ export default function TaskBoard() {
             onhandleOpenManu={handleOpenManu}
             openManu={openManu}
             onTaskMove={taskMove}
+            onDeleteTask={deleteTask}
           />
         </div>
       </div>
