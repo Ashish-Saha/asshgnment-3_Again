@@ -2,18 +2,20 @@ import { useContext, useState } from "react";
 import { DataContext } from "../context/indexContext";
 import { getTagColor } from "../tools/tagColor";
 
-export default function TaskModal({ onCloseShowModal }) {
+export default function TaskModal({ onCloseShowModal, task, isEdit }) {
   const { dataArr, setDataArr } = useContext(DataContext);
 
-  const [formData, setFormData] = useState({
-    id: crypto.randomUUID(),
-    title: "",
-    description: "",
-    tag: "",
-    tagColor: "",
-    date: "",
-    status: "todo",
-  });
+  const [formData, setFormData] = useState(
+    task || {
+      id: crypto.randomUUID(),
+      title: "",
+      description: "",
+      tag: "",
+      tagColor: "",
+      date: "",
+      status: "todo",
+    },
+  );
 
   const handleFormData = (item, event) => {
     const value = event.target.value;
@@ -24,12 +26,70 @@ export default function TaskModal({ onCloseShowModal }) {
     }));
   };
 
-  const handleAddTask = (task) => {
-    const status = task.status;
-    setDataArr({
-      ...dataArr,
-      [status]: [...dataArr[status], task],
-    });
+  // const handleAddTask = (taskItem) => {
+  //   const status = taskItem.status;
+  //   setDataArr({
+  //     ...dataArr,
+  //     [status]: [...dataArr[status], taskItem],
+  //   });
+  // };
+
+  //   const handleEditTask = (taskItem) => {
+  //     console.log(taskItem);
+  //     const status = taskItem.status;
+
+  //     const change = dataArr[status].map(item=> item.id === taskItem.id ? taskItem : item)
+
+  // console.log(change)
+
+  //     setDataArr({
+  //       ...dataArr,
+  //       [status] : change
+  //     })
+
+  //   };
+
+  // const handleAddTask = (taskItem) => {
+  //   const status = taskItem.status;
+
+  //   if (isEdit) {
+  //     setDataArr({
+  //       ...dataArr,
+  //       [status]: dataArr[status].map((item) =>
+  //         item.id === taskItem.id ? taskItem : item,
+  //       ),
+  //     });
+  //   } else {
+  //     setDataArr({
+  //       ...dataArr,
+  //       [status]: [...dataArr[status], taskItem],
+  //     });
+  //   }
+  // };
+
+  const handleAddTask = (taskItem) => {
+    let status = taskItem.status;
+
+    if (isEdit) {
+      const updatedData = { ...dataArr };
+
+      // Remove old version from every column
+      Object.keys(updatedData).forEach((key) => {
+        updatedData[key] = updatedData[key].filter(
+          (task) => task.id !== taskItem.id,
+        );
+      });
+
+      // Add updated task to its new status
+      updatedData[status] = [...updatedData[status], taskItem];
+
+      setDataArr(updatedData);
+    } else {
+      setDataArr({
+        ...dataArr,
+        [status]: [...dataArr[status], taskItem],
+      });
+    }
   };
 
   return (
@@ -39,7 +99,7 @@ export default function TaskModal({ onCloseShowModal }) {
           <div className="mb-8 flex items-center justify-between text-center">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mt-8">
-                Add Task
+                {isEdit ? "Edit Task" : "Add Task"}
               </h1>
               <p className="text-sm text-gray-500">
                 Create a card for your board.
@@ -49,9 +109,9 @@ export default function TaskModal({ onCloseShowModal }) {
 
           <form
             onSubmit={(e) => {
-              handleAddTask(formData);
               e.preventDefault();
               onCloseShowModal();
+              handleAddTask(formData);
             }}
             className="space-y-8"
           >
@@ -173,7 +233,7 @@ export default function TaskModal({ onCloseShowModal }) {
                 type="submit"
                 className="inline-flex items-center justify-center rounded-xl bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-gray-800"
               >
-                Add Task
+                {isEdit ? "Update Task" : "Add Task"}
               </button>
             </div>
           </form>

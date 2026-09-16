@@ -53,6 +53,13 @@ export default function TaskBoard() {
     });
   };
 
+
+  const editTask = (task)=>{
+    
+  }
+
+
+
   const deleteTask = (task) => {
     setDataArr({
       ...dataArr,
