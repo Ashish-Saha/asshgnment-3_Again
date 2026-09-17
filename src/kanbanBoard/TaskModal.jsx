@@ -26,68 +26,23 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
     }));
   };
 
-  // const handleAddTask = (taskItem) => {
-  //   const status = taskItem.status;
-
-  //   if (isEdit) {
-  //     setDataArr({
-  //       ...dataArr,
-  //       [status]: dataArr[status].map((item) =>
-  //         item.id === taskItem.id ? taskItem : item,
-  //       ),
-  //     });
-  //   } else {
-  //     setDataArr({
-  //       ...dataArr,
-  //       [status]: [...dataArr[status], taskItem],
-  //     });
-  //   }
-  // };
-
-  // const handleAddTask = (taskItem) => {
-  //   let status = taskItem.status;
-
-  //   if (isEdit) {
-  //     const updatedData = { ...dataArr };
-
-  //     // Remove old version from every column
-  //     Object.keys(updatedData).forEach((key) => {
-  //       updatedData[key] = updatedData[key].filter(
-  //         (task) => task.id !== taskItem.id,
-  //       );
-  //     });
-
-  //     // Add updated task to its new status
-  //     updatedData[status] = [...updatedData[status], taskItem];
-
-  //     setDataArr(updatedData);
-  //   } else {
-  //     setDataArr({
-  //       ...dataArr,
-  //       [status]: [...dataArr[status], taskItem],
-  //     });
-  //   }
-  // };
-
+  //Below fun is for ADD or Update/Edit Task
   const handleAddTask = (taskItem) => {
+    let status = taskItem.status;
+
     setDataArr((prev) => {
-      //   const updatedTask = {
-      //   todo: prev.todo.filter((task) => task.id !== taskItem.id),
-      //   progress: prev.progress.filter((task) => task.id !== taskItem.id),
-      //   done: prev.done.filter((task) => task.id !== taskItem.id),
-      // };
+      const updatedData = { ...prev };
+      //Remove clicked item from whole database first
+      Object.keys(updatedData).forEach((element) => {
+        updatedData[element] = updatedData[element].filter(
+          (item) => item.id !== taskItem.id,
+        );
+      });
 
-      const updatedTask = Object.keys(prev).forEach((key) =>
-        prev[key].filter((item) => item.id !== taskItem.id),
-      );
+      //Add or update task because taskItem means formData
+      updatedData[status] = [...updatedData[status], taskItem];
 
-      console.log(updatedTask);
-
-      const status = taskItem.status;
-
-      updatedTask[status] = [...updatedTask[status], taskItem];
-
-      return updatedTask;
+      return updatedData;
     });
   };
 

@@ -6,7 +6,7 @@ export const taskData = {
       description: "Set up high-fidelity prototypes with conditional logic",
       tag: "Design",
       tagColor: "#1D4ED8",
-      date: "Aug 26",
+      date: "2026-08-15",
       status: "todo",
     },
 
@@ -16,7 +16,7 @@ export const taskData = {
       description: "Data entry cleanup and validation",
       tag: "Operations",
       tagColor: "#B45309",
-      date: "Aug 27",
+      date: "2026-08-27",
       status: "todo",
     },
 
@@ -38,7 +38,7 @@ export const taskData = {
       description: "Graphic Design Edits and refinements",
       tag: "Creative",
       tagColor: "#7C3AED",
-      date: "Aug 27",
+      date: "2025-08-27",
       status: "progress",
     },
 
@@ -48,7 +48,7 @@ export const taskData = {
       description: "Presentation Slide Design",
       tag: "Development",
       tagColor: "#4338CA",
-      date: "Aug 29",
+      date: "2026-08-27",
       status: "progress",
     },
 
@@ -70,7 +70,7 @@ export const taskData = {
       description: "Install and configure development tools",
       tag: "Setup",
       tagColor: "#eac140",
-      date: "Aug 23",
+      date: "2026-08-23",
       status: "done",
     },
 
@@ -80,7 +80,7 @@ export const taskData = {
       description: "Database schema and optimization",
       tag: "Infrastructure",
       tagColor: "#1D4ED8",
-      date: "Aug 24",
+      date: "2026-08-24",
       status: "done",
     },
 
