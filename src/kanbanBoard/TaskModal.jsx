@@ -28,29 +28,6 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
 
   // const handleAddTask = (taskItem) => {
   //   const status = taskItem.status;
-  //   setDataArr({
-  //     ...dataArr,
-  //     [status]: [...dataArr[status], taskItem],
-  //   });
-  // };
-
-  //   const handleEditTask = (taskItem) => {
-  //     console.log(taskItem);
-  //     const status = taskItem.status;
-
-  //     const change = dataArr[status].map(item=> item.id === taskItem.id ? taskItem : item)
-
-  // console.log(change)
-
-  //     setDataArr({
-  //       ...dataArr,
-  //       [status] : change
-  //     })
-
-  //   };
-
-  // const handleAddTask = (taskItem) => {
-  //   const status = taskItem.status;
 
   //   if (isEdit) {
   //     setDataArr({
@@ -67,29 +44,51 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
   //   }
   // };
 
+  // const handleAddTask = (taskItem) => {
+  //   let status = taskItem.status;
+
+  //   if (isEdit) {
+  //     const updatedData = { ...dataArr };
+
+  //     // Remove old version from every column
+  //     Object.keys(updatedData).forEach((key) => {
+  //       updatedData[key] = updatedData[key].filter(
+  //         (task) => task.id !== taskItem.id,
+  //       );
+  //     });
+
+  //     // Add updated task to its new status
+  //     updatedData[status] = [...updatedData[status], taskItem];
+
+  //     setDataArr(updatedData);
+  //   } else {
+  //     setDataArr({
+  //       ...dataArr,
+  //       [status]: [...dataArr[status], taskItem],
+  //     });
+  //   }
+  // };
+
   const handleAddTask = (taskItem) => {
-    let status = taskItem.status;
+    setDataArr((prev) => {
+      //   const updatedTask = {
+      //   todo: prev.todo.filter((task) => task.id !== taskItem.id),
+      //   progress: prev.progress.filter((task) => task.id !== taskItem.id),
+      //   done: prev.done.filter((task) => task.id !== taskItem.id),
+      // };
 
-    if (isEdit) {
-      const updatedData = { ...dataArr };
+      const updatedTask = Object.keys(prev).forEach((key) =>
+        prev[key].filter((item) => item.id !== taskItem.id),
+      );
 
-      // Remove old version from every column
-      Object.keys(updatedData).forEach((key) => {
-        updatedData[key] = updatedData[key].filter(
-          (task) => task.id !== taskItem.id,
-        );
-      });
+      console.log(updatedTask);
 
-      // Add updated task to its new status
-      updatedData[status] = [...updatedData[status], taskItem];
+      const status = taskItem.status;
 
-      setDataArr(updatedData);
-    } else {
-      setDataArr({
-        ...dataArr,
-        [status]: [...dataArr[status], taskItem],
-      });
-    }
+      updatedTask[status] = [...updatedTask[status], taskItem];
+
+      return updatedTask;
+    });
   };
 
   return (
