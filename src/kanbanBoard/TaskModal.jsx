@@ -97,7 +97,7 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
                   onChange={(e) => handleFormData("title", e)}
                 />
                 <p className="text-red-600 font-bold text-[14px] mt-2">
-                  {error.title}
+                  {error?.title}
                 </p>
               </div>
 
@@ -117,7 +117,7 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
                   onChange={(e) => handleFormData("description", e)}
                 />
                 <p className="text-red-600 font-bold text-[14px] mt-2">
-                  {error.description}
+                  {error?.description}
                 </p>
               </div>
             </div>
@@ -149,7 +149,7 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
                   <option value="Documentation">Documentation</option>
                 </select>
                 <p className="text-red-600 font-bold text-[14px] mt-2">
-                  {error.tag}
+                  {error?.tag}
                 </p>
               </div>
 

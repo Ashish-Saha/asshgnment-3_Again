@@ -38,7 +38,7 @@ export const taskData = {
       description: "Graphic Design Edits and refinements",
       tag: "Creative",
       tagColor: "#7C3AED",
-      date: "2025-08-27",
+      date: "2026-08-20",
       status: "progress",
     },
 
@@ -48,7 +48,7 @@ export const taskData = {
       description: "Presentation Slide Design",
       tag: "Development",
       tagColor: "#4338CA",
-      date: "2026-08-27",
+      date: "2026-08-26",
       status: "progress",
     },
 

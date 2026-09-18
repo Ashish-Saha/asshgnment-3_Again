@@ -3,7 +3,9 @@ export default function TaskHeader({
   onhandleOpenManu,
   openManu,
   taskCount,
+  filterItem,
   setFilterItem,
+  sortItem,
   setSortItem,
 }) {
   //While click any filter item ites truns true meaning manu show & others manu is set by null,
@@ -26,7 +28,7 @@ export default function TaskHeader({
           <div className="relative">
             <button
               type="button"
-              className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none"
+              className={`flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border rounded-lg hover:bg-gray-50 focus:outline-none ${filterItem !== "All" ? "border-gray-600 " : "border-gray-200"} `}
               onClick={() => {
                 onhandleOpenManu(columnName, "filter");
               }}
@@ -125,7 +127,7 @@ export default function TaskHeader({
           <div className="relative">
             <button
               type="button"
-              className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none"
+              className={`flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border  rounded-lg hover:bg-gray-50 focus:outline-none ${sortItem ? 'border-gray-600' : 'border-gray-200'}`}
               onClick={() => onhandleOpenManu(columnName, "sort")}
             >
               <svg

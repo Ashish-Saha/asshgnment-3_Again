@@ -1,11 +1,11 @@
 const validationForm = (formData, setErrors) => {
   let newErrors = {};
 
-  if (!formData.title) {
+  if (!formData.title?.trim()) {
     newErrors.title = `Title is Required`;
   }
 
-  if (!formData.description) {
+  if (!formData.description?.trim()) {
     newErrors.description = `Description is Required`;
   }
 

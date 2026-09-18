@@ -26,7 +26,9 @@ export default function TodoColumn({
           onhandleOpenManu={onhandleOpenManu}
           openManu={openManu}
           taskCount={todoTaskData.length}
+          filterItem={filterItem}
           setFilterItem={setFilterItem}
+          sortItem={sortItem}
           setSortItem={setSortItem}
         />
 
