@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { DataContext } from "../context/indexContext";
 import { getTagColor } from "../tools/tagColor";
+import { validationForm } from "../tools/validationForm";
 
 export default function TaskModal({ onCloseShowModal, task, isEdit }) {
-  const { dataArr, setDataArr } = useContext(DataContext);
+  const { setDataArr } = useContext(DataContext);
+  const [error, setErrors] = useState({});
 
   const [formData, setFormData] = useState(
     task || {
@@ -28,6 +30,10 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
 
   //Below fun is for ADD or Update/Edit Task
   const handleAddTask = (taskItem) => {
+    const validation = validationForm(formData, setErrors);
+
+    if (!validation) return;
+
     let status = taskItem.status;
 
     setDataArr((prev) => {
@@ -44,6 +50,8 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
 
       return updatedData;
     });
+
+    return true;
   };
 
   return (
@@ -64,8 +72,10 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              onCloseShowModal();
-              handleAddTask(formData);
+              const success = handleAddTask(formData);
+              if (success) {
+                onCloseShowModal();
+              }
             }}
             className="space-y-8"
           >
@@ -83,10 +93,12 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
                   name="title"
                   placeholder="e.g. Wireframes"
                   className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-900 focus:outline-none"
-                  required
                   value={formData.title}
                   onChange={(e) => handleFormData("title", e)}
                 />
+                <p className="text-red-600 font-bold text-[14px] mt-2">
+                  {error.title}
+                </p>
               </div>
 
               <div>
@@ -104,6 +116,9 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
                   value={formData.description}
                   onChange={(e) => handleFormData("description", e)}
                 />
+                <p className="text-red-600 font-bold text-[14px] mt-2">
+                  {error.description}
+                </p>
               </div>
             </div>
 
@@ -122,6 +137,7 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
                   value={formData.tag}
                   onChange={(e) => handleFormData("tag", e)}
                 >
+                  <option value="Design">Select Tag</option>
                   <option value="Design">Design</option>
                   <option value="Operations">Operations</option>
                   <option value="Marketing">Marketing</option>
@@ -132,6 +148,9 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
                   <option value="Infrastructure">Infrastructure</option>
                   <option value="Documentation">Documentation</option>
                 </select>
+                <p className="text-red-600 font-bold text-[14px] mt-2">
+                  {error.tag}
+                </p>
               </div>
 
               <div>
@@ -149,6 +168,9 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
                   value={formData.date}
                   onChange={(e) => handleFormData("date", e)}
                 />
+                <p className="text-red-600 font-bold text-[14px] mt-2">
+                  {error.date}
+                </p>
               </div>
 
               <div>

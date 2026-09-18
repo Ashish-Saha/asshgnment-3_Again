@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getFormatDate } from "../tools/tagColor";
+import DeleteTaskModal from "./DeleteTaskModal";
 import TaskModal from "./TaskModal";
 
 export default function Task({
@@ -9,9 +10,10 @@ export default function Task({
   columnName,
   onTaskMove,
   onDeleteTask,
-  onEditTask,
+ 
 }) {
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const isTaskOpen =
     openManu.column === columnName && openManu.type === item.id;
@@ -26,9 +28,26 @@ export default function Task({
     setShowEditModal((prev) => !prev);
   };
 
+  const handleDeleteShowModal = () => {
+    setShowDeleteModal((prev) => !prev);
+  };
+
   return (
     <>
-      {showEditModal && <TaskModal onCloseShowModal={handleEditShowModal} task={item} isEdit= {true}/>}
+      {showDeleteModal && (
+        <DeleteTaskModal
+          onDeleteTask={onDeleteTask}
+          task={item}
+          onCloseDeleteTask={handleDeleteShowModal}
+        />
+      )}
+      {showEditModal && (
+        <TaskModal
+          onCloseShowModal={handleEditShowModal}
+          task={item}
+          isEdit={true}
+        />
+      )}
       <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow relative">
         {/* Task Options Button*/}
 
@@ -68,14 +87,20 @@ export default function Task({
                 <button
                   type="button"
                   className="w-full text-left px-4 py-2 hover:bg-gray-50"
-                  onClick={() => {handleEditShowModal(); onhandleOpenManu(null,null)}}
+                  onClick={() => {
+                    handleEditShowModal();
+                    onhandleOpenManu(null, null);
+                  }}
                 >
                   Edit Card
                 </button>
                 <button
                   type="button"
                   className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50"
-                  onClick={() => onDeleteTask(item)}
+                  onClick={() => {
+                    handleDeleteShowModal();
+                    onhandleOpenManu(null, null);
+                  }}
                 >
                   Delete Card
                 </button>
