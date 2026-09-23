@@ -14,7 +14,7 @@ export default function DoneColumn({
   const data = [...doneTaskData];
 
   const [filterItem, setFilterItem] = useState("All");
-  const [sortItem, setSortItem] = useState("");
+  const [sortItem, setSortItem] = useState("clear");
 
   const filterSortedData = filterSort(filterItem, sortItem, data);
 
@@ -26,7 +26,9 @@ export default function DoneColumn({
           onhandleOpenManu={onhandleOpenManu}
           openManu={openManu}
           taskCount={doneTaskData.length}
+          filterItem={filterItem}
           setFilterItem={setFilterItem}
+          sortItem={sortItem}
           setSortItem={setSortItem}
         />
 

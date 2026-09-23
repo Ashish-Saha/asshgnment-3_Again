@@ -127,7 +127,7 @@ export default function TaskHeader({
           <div className="relative">
             <button
               type="button"
-              className={`flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border  rounded-lg hover:bg-gray-50 focus:outline-none ${sortItem ? 'border-gray-600' : 'border-gray-200'}`}
+              className={`flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border  rounded-lg hover:bg-gray-50 focus:outline-none ${sortItem !== "clear"? 'border-gray-600' : 'border-gray-200'}`}
               onClick={() => onhandleOpenManu(columnName, "sort")}
             >
               <svg
@@ -170,6 +170,14 @@ export default function TaskHeader({
                   className="w-full text-left px-4 py-2 hover:bg-gray-50"
                 >
                   Oldest first
+                </button>
+
+                <button
+                  type="button"
+                  value={"clear"}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-50 border-t border-gray-400"
+                >
+                  Clear Sorting
                 </button>
               </div>
             )}

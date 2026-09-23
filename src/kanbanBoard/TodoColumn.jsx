@@ -14,7 +14,7 @@ export default function TodoColumn({
   const todoData = [...todoTaskData];
 
   const [filterItem, setFilterItem] = useState("All");
-  const [sortItem, setSortItem] = useState("");
+  const [sortItem, setSortItem] = useState("clear");
 
   const filterSortedData = filterSort(filterItem, sortItem, todoData);
 

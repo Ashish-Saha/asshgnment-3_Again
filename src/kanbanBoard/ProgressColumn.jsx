@@ -14,7 +14,7 @@ export default function ProgressColumn({
   const progressData = [...progressTaskData];
 
   const [filterItem, setFilterItem] = useState("All");
-  const [sortItem, setSortItem] = useState("");
+  const [sortItem, setSortItem] = useState("clear");
 
   const filterSortedData = filterSort(filterItem, sortItem, progressData);
 
@@ -26,7 +26,9 @@ export default function ProgressColumn({
           onhandleOpenManu={onhandleOpenManu}
           openManu={openManu}
           taskCount={progressTaskData.length}
+          filterItem={filterItem}
           setFilterItem={setFilterItem}
+          sortItem={sortItem}
           setSortItem={setSortItem}
         />
 
