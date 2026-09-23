@@ -4,7 +4,7 @@ import { getTagColor } from "../tools/tagColor";
 import { validationForm } from "../tools/validationForm";
 
 export default function TaskModal({ onCloseShowModal, task, isEdit }) {
-  const { setDataArr } = useContext(DataContext);
+  const { dispatch } = useContext(DataContext);
   const [error, setErrors] = useState({});
 
   const [formData, setFormData] = useState(
@@ -29,27 +29,59 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
   };
 
   //Below fun is for ADD or Update/Edit Task
-  const handleAddTask = (taskItem) => {
+  // const handleAddTask = (taskItem) => {
+  //   const validation = validationForm(formData, setErrors);
+
+  //   if (!validation) return;
+
+  //   let status = taskItem.status;
+
+  //   setDataArr((prev) => {
+  //     const updatedData = { ...prev };
+  //     //Remove clicked item from whole database first
+  //     Object.keys(updatedData).forEach((element) => {
+  //       updatedData[element] = updatedData[element].filter(
+  //         (item) => item.id !== taskItem.id,
+  //       );
+  //     });
+
+  //     //Add or update task because taskItem means formData
+  //     updatedData[status] = [...updatedData[status], taskItem];
+
+  //     return updatedData;
+  //   });
+
+  //   return true;
+  // };
+
+
+   const handleAddTask = (taskItem) => {
     const validation = validationForm(formData, setErrors);
 
     if (!validation) return;
 
-    let status = taskItem.status;
+    // let status = taskItem.status;
 
-    setDataArr((prev) => {
-      const updatedData = { ...prev };
-      //Remove clicked item from whole database first
-      Object.keys(updatedData).forEach((element) => {
-        updatedData[element] = updatedData[element].filter(
-          (item) => item.id !== taskItem.id,
-        );
-      });
+    // setDataArr((prev) => {
+    //   const updatedData = { ...prev };
+    //   //Remove clicked item from whole database first
+    //   Object.keys(updatedData).forEach((element) => {
+    //     updatedData[element] = updatedData[element].filter(
+    //       (item) => item.id !== taskItem.id,
+    //     );
+    //   });
 
-      //Add or update task because taskItem means formData
-      updatedData[status] = [...updatedData[status], taskItem];
+    //   //Add or update task because taskItem means formData
+    //   updatedData[status] = [...updatedData[status], taskItem];
 
-      return updatedData;
-    });
+    //   return updatedData;
+    // });
+
+
+    dispatch({
+      type : 'ADD_TASK',
+      payload : taskItem
+    })
 
     return true;
   };
