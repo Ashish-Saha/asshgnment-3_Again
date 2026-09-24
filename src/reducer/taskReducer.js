@@ -1,9 +1,8 @@
 const taskReducer = (state, action) => {
   switch (action.type) {
-    case "ADD_TASK": {
+    case "ADD_EDIT_TASK": {
       const taskitem = action.payload;
       const status = taskitem.status;
-
 
       const updatedData = { ...state };
       // Remove existing task from every column
@@ -19,8 +18,14 @@ const taskReducer = (state, action) => {
       return updatedData;
     }
 
-    case "REMOVE_FROM_CART":
-      return {};
+    case "REMOVE_TASK": {
+      const task = action.payload;
+
+      return {
+        ...state,
+        [task.status]: state[task.status].filter((item) => item.id !== task.id),
+      };
+    }
 
     default:
       break;

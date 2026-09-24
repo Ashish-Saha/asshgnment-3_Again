@@ -11,7 +11,7 @@ export default function TaskBoard() {
     type: null,
   });
 
-  const { dataArr, setDataArr } = useContext(DataContext);
+  const { dataArr, dispatch } = useContext(DataContext);
   const { searchTerm } = useContext(SearchContext);
 
   const handleOpenManu = (column, type) => {
@@ -59,10 +59,15 @@ export default function TaskBoard() {
 
 
   const deleteTask = (task) => {
-    setDataArr({
-      ...dataArr,
-      [task.status]: dataArr[task.status].filter((item) => item.id !== task.id),
-    });
+    // setDataArr({
+    //   ...dataArr,
+    //   [task.status]: dataArr[task.status].filter((item) => item.id !== task.id),
+    // });
+    dispatch({
+      type : "REMOVE_TASK",
+      payload : task
+    })
+
   };
 
   return (

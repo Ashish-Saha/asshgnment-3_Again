@@ -79,7 +79,7 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
 
 
     dispatch({
-      type : 'ADD_TASK',
+      type : 'ADD_EDIT_TASK',
       payload : taskItem
     })
 
