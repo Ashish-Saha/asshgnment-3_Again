@@ -37,26 +37,29 @@ export default function TaskBoard() {
     //As nextColumn gets like To-do but as per dataArr name is 'todo' so newColumnName is
     // to convert this naming confusion
 
-    const newColumnName = {
-      "To-do": "todo",
-      "In Progress": "progress",
-      Done: "done",
-    };
+    // const newColumnName = {
+    //   "To-do": "todo",
+    //   "In Progress": "progress",
+    //   Done: "done",
+    // };
 
     //Here next is in which column task should move
-    const next = newColumnName[nextColumn];
+    // const next = newColumnName[nextColumn];
 
-    setDataArr({
-      ...dataArr,
-      [next]: [...dataArr[next], { ...task, status: next }],
-      [task.status]: dataArr[task.status].filter((item) => item.id !== task.id),
+    // setDataArr({
+    //   ...dataArr,
+    //   [next]: [...dataArr[next], { ...task, status: next }],
+    //   [task.status]: dataArr[task.status].filter((item) => item.id !== task.id),
+    // });
+
+    dispatch({
+      type: "MOVE_TASK",
+      payload: {
+        nextColumn,
+        task,
+      },
     });
   };
-
-
- 
-
-
 
   const deleteTask = (task) => {
     // setDataArr({
@@ -64,10 +67,9 @@ export default function TaskBoard() {
     //   [task.status]: dataArr[task.status].filter((item) => item.id !== task.id),
     // });
     dispatch({
-      type : "REMOVE_TASK",
-      payload : task
-    })
-
+      type: "REMOVE_TASK",
+      payload: task,
+    });
   };
 
   return (

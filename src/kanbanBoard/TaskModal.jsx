@@ -29,33 +29,7 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
   };
 
   //Below fun is for ADD or Update/Edit Task
-  // const handleAddTask = (taskItem) => {
-  //   const validation = validationForm(formData, setErrors);
-
-  //   if (!validation) return;
-
-  //   let status = taskItem.status;
-
-  //   setDataArr((prev) => {
-  //     const updatedData = { ...prev };
-  //     //Remove clicked item from whole database first
-  //     Object.keys(updatedData).forEach((element) => {
-  //       updatedData[element] = updatedData[element].filter(
-  //         (item) => item.id !== taskItem.id,
-  //       );
-  //     });
-
-  //     //Add or update task because taskItem means formData
-  //     updatedData[status] = [...updatedData[status], taskItem];
-
-  //     return updatedData;
-  //   });
-
-  //   return true;
-  // };
-
-
-   const handleAddTask = (taskItem) => {
+  const handleAddTask = (taskItem) => {
     const validation = validationForm(formData, setErrors);
 
     if (!validation) return;
@@ -77,11 +51,10 @@ export default function TaskModal({ onCloseShowModal, task, isEdit }) {
     //   return updatedData;
     // });
 
-
     dispatch({
-      type : 'ADD_EDIT_TASK',
-      payload : taskItem
-    })
+      type: "ADD_EDIT_TASK",
+      payload: taskItem,
+    });
 
     return true;
   };
